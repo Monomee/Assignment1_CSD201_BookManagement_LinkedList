@@ -4,6 +4,7 @@
  */
 package bookmanagement;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -172,7 +173,7 @@ public class LinkedList {
         return (null);
     }
 
-    Node searchInLeandingBybCode(String xbCode) {
+    Node searchInLendingBybCode(String xbCode) {
         Node p = head;
         while (p != null) {
             if (p.lendingInfo.getbCode().equals(xbCode)) {
@@ -181,6 +182,18 @@ public class LinkedList {
             p = p.next;
         }
         return (null);
+    }
+
+    List<Node> searchLendingBybCode(String bCode) {
+        List<Node> lendingListWithBook = new ArrayList<>();
+        Node p = head;
+        while (p != null) {
+            if (p.lendingInfo.getbCode().equals(bCode)) {
+                lendingListWithBook.add(p);
+            }
+            p = p.next;
+        }
+        return lendingListWithBook;
     }
 
     Node searchByrCode(String xrCode) {
@@ -213,7 +226,7 @@ public class LinkedList {
         if (q == head) {
             head = head.next;
             if (head == null) {
-                tail = null; 
+                tail = null;
             }
             return;
         }
@@ -226,7 +239,7 @@ public class LinkedList {
         if (p != null) {
             p.next = q.next;
             if (p.next == null) {
-                tail = p;  
+                tail = p;
             }
         }
     }

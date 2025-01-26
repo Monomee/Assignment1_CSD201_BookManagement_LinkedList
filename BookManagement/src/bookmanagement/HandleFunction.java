@@ -10,6 +10,7 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.Scanner;
 import java.io.FileWriter;
+import java.util.List;
 
 /**
  *
@@ -335,10 +336,10 @@ public class HandleFunction {
             System.out.println(rCode + " does not existed!");
         }
     }
-    
+
     /*
     About Lending
-    */
+     */
     //1
     void inputLendingData() {
         String bCode;
@@ -359,11 +360,6 @@ public class HandleFunction {
             return;
         }
 
-        Lending checkLending = lendingList.searchBybCode(bCode).lendingInfo;
-        if (checkLending.getrCode().equals(rCode.trim()) && checkLending.getState() == 1) {
-            System.out.println("Data not accepted!");
-            return;
-        }
         Book checkBook = bookList.searchBybCode(bCode).bookInfo;
         if (checkBook.getLended() == checkBook.getQuanlity()) {
             state = 0;
@@ -372,14 +368,32 @@ public class HandleFunction {
             checkBook.setLended(checkBook.getLended() + 1);
         }
 
-        lendingList.addLast(new Lending(bCode, rCode, state));
+        List<Node> lendingListForBook = lendingList.searchLendingBybCode(bCode);
+        boolean isAlreadyLent = false;
+        for (Node checkLending : lendingListForBook) {
+            // Nếu người đọc đã mượn sách này và trạng thái là 1 (đang mượn)
+            if (checkLending.lendingInfo.getrCode().equals(rCode) && checkLending.lendingInfo.getState() == 1) {
+                isAlreadyLent = true;
+                break;
+            }
+        }
 
+        // Nếu sách đã được mượn bởi người đọc này, không cho phép mượn lại
+        if (isAlreadyLent) {
+            System.out.println("Data not accepted!");  // Người đọc đã mượn sách này rồi
+            return;
+        }
+
+        lendingList.addLast(new Lending(bCode, rCode, state));
+        System.out.println("Done!");
     }
+
     //2
     void displayLendingData() {
         System.out.printf("%-15s|%-15s|%-15s\n", "BCode", "RCode", "State");
         lendingList.traverse();
     }
+
     //3
     void sortLendingBybCode() {
         Node pi, pj;
@@ -393,7 +407,9 @@ public class HandleFunction {
                 }
             }
         }
+        System.out.println("Done!");
     }
+
     //4
     void sortLendingByrCode() {
         Node pi, pj;
@@ -407,6 +423,7 @@ public class HandleFunction {
                 }
             }
         }
+        System.out.println("Done!");
     }
 
 }
