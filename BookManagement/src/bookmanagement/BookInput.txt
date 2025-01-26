@@ -1,0 +1,6 @@
+0; B03; Morning; 12; 25.1
+1; B01; The noon; 10; 5.2
+2; B02; River; 5; 4.3
+3; B05; Physics; 7; 15.4
+4; B07; Biology; 11; 12.2
+5; B04; Southern; 9; 5.2
