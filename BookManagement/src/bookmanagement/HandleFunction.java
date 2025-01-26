@@ -68,6 +68,10 @@ public class HandleFunction {
         }
     }
 
+    /*
+     About Book
+     */
+    //1
     void loadBookDataFromFile() {
         String fileName;
         System.out.print("Enter file name (Recommend: \"BookInput.txt\"): ");
@@ -76,6 +80,7 @@ public class HandleFunction {
         System.out.println("Done!");
     }
 
+    //2
     void inputBookAddLast() {
         String bCode;
         String title;
@@ -105,11 +110,13 @@ public class HandleFunction {
         System.out.println("Done!");
     }
 
+    //3
     void displayBookData() {
         System.out.printf("%-15s|%-15s|%-15s|%-15s|%-15s|%-15s\n", "BCode", "Title", "Quanlity", "Lended", "Price", "Value");
         bookList.traverse();
     }
 
+    //4
     void saveBookListToFile() {
         String path;
         System.out.println("Enter file name (Recommend: \"BookList.txt\"): ");
@@ -129,30 +136,8 @@ public class HandleFunction {
             System.err.println("Error while saving book list to file: " + e.getMessage());
         }
     }
-//       String path = "BookList.txt";
-//        Node p = bookList.head;
-//        try {
-//            FileWriter fWriter = new FileWriter(path);
-//            while (p != null) {
-//                String info = p.bookInfo.toString();
-//                // Writing into file
-//                fWriter.write(info);
-//
-//                // Printing the contents of a file
-//                System.out.println(info);
-//
-//                p = p.next;
-//            }
-//            // Closing the file writing connection
-//            fWriter.close();
-//            
-//            System.out.println("Done!");
-//        } // Catch block to handle if exception occurs
-//        catch (IOException e) {
-//            // Print the exception
-//            System.out.print(e.getMessage());
-//        }
 
+    //5
     void searchBybCode() {
         String bCode;
         System.out.print("Enter bCode to search: ");
@@ -163,8 +148,10 @@ public class HandleFunction {
         } else {
             System.out.println(bCode + " does not existed!");
         }
+        System.out.println();
     }
 
+    //6
     void deleteBybCode() {
         String bCode;
         System.out.print("Enter bCode to delete: ");
@@ -178,11 +165,13 @@ public class HandleFunction {
         }
     }
 
+    //7
     void sortBybCode() {
         bookList.sortBybCode();
         System.out.println("Done!");
     }
 
+    //8
     void inputBookAddFirst() {
         String bCode;
         String title;
@@ -212,6 +201,7 @@ public class HandleFunction {
         System.out.println("Done!");
     }
 
+    //9
     void addBookAfter() {
         String bCode;
         String title;
@@ -244,6 +234,7 @@ public class HandleFunction {
         System.out.println("Done!");
     }
 
+    //10
     void deleteBookPos() {
         int pos;
         System.out.println("Enter position to delete: ");
@@ -252,6 +243,10 @@ public class HandleFunction {
         System.out.println("Done!");
     }
 
+    /*
+    About Reader
+     */
+    //1
     void loadReaderDataFromFile() {
         String fileName;
         System.out.print("Enter file name (Recommend: \"ReaderInput.txt\"): ");
@@ -260,6 +255,7 @@ public class HandleFunction {
         System.out.println("Done!");
     }
 
+    //2
     void inputReaderAddLast() {
         String rCode;
         String name;
@@ -285,11 +281,13 @@ public class HandleFunction {
         System.out.println("Done!");
     }
 
+    //3
     void displayReaderData() {
         System.out.printf("%-15s|%-15s|%-15s\n", "RCode", "Name", "Byear");
         readerList.traverse();
     }
 
+    //4
     void saveReaderListToFile() {
         String path;
         System.out.println("Enter file name (Recommend: \"ReaderList.txt\"): ");
@@ -310,6 +308,7 @@ public class HandleFunction {
         }
     }
 
+    //5
     void searchByrCode() {
         String rCode;
         System.out.print("Enter rCode to search: ");
@@ -320,8 +319,10 @@ public class HandleFunction {
         } else {
             System.out.println(rCode + " does not existed!");
         }
+        System.out.println();
     }
 
+    //6
     void deleteByrCode() {
         String rCode;
         System.out.print("Enter rCode to delete: ");
@@ -334,7 +335,11 @@ public class HandleFunction {
             System.out.println(rCode + " does not existed!");
         }
     }
-
+    
+    /*
+    About Lending
+    */
+    //1
     void inputLendingData() {
         String bCode;
         String rCode;
@@ -342,21 +347,18 @@ public class HandleFunction {
 
         System.out.print("Enter bCode: ");
         bCode = sc.nextLine();
-        if (bookList.searchBybCode(bCode) == null) {
+        if (bookList.searchBybCode(bCode.trim()) == null) {
             System.out.println(bCode + " does not existed!");
             return;
         }
 
         System.out.print("Enter rCode: ");
         rCode = sc.nextLine();
-        if (readerList.searchByrCode(rCode) == null) {
+        if (readerList.searchByrCode(rCode.trim()) == null) {
             System.out.println(rCode + " does not existed!");
             return;
         }
 
-//        System.out.println("Enter state: ");
-//        state = c.handleChoice(2);
-//        
         Lending checkLending = lendingList.searchBybCode(bCode).lendingInfo;
         if (checkLending.getrCode().equals(rCode.trim()) && checkLending.getState() == 1) {
             System.out.println("Data not accepted!");
@@ -373,12 +375,12 @@ public class HandleFunction {
         lendingList.addLast(new Lending(bCode, rCode, state));
 
     }
-
+    //2
     void displayLendingData() {
         System.out.printf("%-15s|%-15s|%-15s\n", "BCode", "RCode", "State");
         lendingList.traverse();
     }
-
+    //3
     void sortLendingBybCode() {
         Node pi, pj;
         Lending temp;
@@ -392,8 +394,8 @@ public class HandleFunction {
             }
         }
     }
-    
-    void sortLendingByrCode(){
+    //4
+    void sortLendingByrCode() {
         Node pi, pj;
         Lending temp;
         for (pi = lendingList.head; pi != null; pi = pi.next) {

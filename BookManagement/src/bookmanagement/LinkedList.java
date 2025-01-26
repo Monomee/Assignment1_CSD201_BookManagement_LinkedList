@@ -5,18 +5,20 @@
 package bookmanagement;
 
 import java.util.List;
+
 /**
  *
  * @author PC
  */
 public class LinkedList {
+
     Node head;
     Node tail;
 
     public LinkedList() {
         head = tail = null;
     }
-    
+
     boolean isEmpty() {
         return (head == null);
     }
@@ -24,16 +26,16 @@ public class LinkedList {
     void clear() {
         head = tail = null;
     }
-    
+
     void visit(Node p) {
         if (p != null) {
-            if (p.bookInfo != null){
+            if (p.bookInfo != null) {
                 System.out.print(p.bookInfo);
-            }else if (p.readerInfo != null){
+            } else if (p.readerInfo != null) {
                 System.out.print(p.readerInfo);
-            }else if (p.lendingInfo != null){
+            } else if (p.lendingInfo != null) {
                 System.out.print(p.lendingInfo);
-            }          
+            }
         }
     }
 
@@ -43,49 +45,51 @@ public class LinkedList {
             visit(p);
             p = p.next;
             System.out.println();
-        }  
+        }
     }
-    
+
     int size() {
         int count = 0;
         Node p = head;
-        while(p != null){
+        while (p != null) {
             count++;
             p = p.next;
         }
         return (count);
     }
-    
+
     Node pos(int k) {
         int i = 0;
         Node p = head;
-        while (p != null){
-            if(i == k){
+        while (p != null) {
+            if (i == k) {
                 return p;
-            }else{
+            } else {
                 i++;
                 p = p.next;
             }
         }
         return (null);
     }
-    
-    int indexOf(Node q){
-        if (q == null) return -1;
+
+    int indexOf(Node q) {
+        if (q == null) {
+            return -1;
+        }
 
         int index = 0;
         Node p = head;
-        while (p != null){
-            if (p == q){
+        while (p != null) {
+            if (p == q) {
                 return index;
-            }else{
+            } else {
                 index++;
                 p = p.next;
             }
         }
         return -1;
     }
-    
+
     //Add
     void addFirst(Book x) {
         head = new Node(x, head);
@@ -93,19 +97,21 @@ public class LinkedList {
             tail = head;
         }
     }
+
     void addFirst(Reader x) {
         head = new Node(x, head);
         if (tail == null) {
             tail = head;
         }
     }
+
     void addFirst(Lending x) {
         head = new Node(x, head);
         if (tail == null) {
             tail = head;
         }
     }
-    
+
     void addLast(Book x) {
         Node q = new Node(x);
         if (isEmpty()) {
@@ -115,6 +121,7 @@ public class LinkedList {
         tail.next = q;
         tail = q;
     }
+
     void addLast(Reader x) {
         Node q = new Node(x);
         if (isEmpty()) {
@@ -124,6 +131,7 @@ public class LinkedList {
         tail.next = q;
         tail = q;
     }
+
     void addLast(Lending x) {
         Node q = new Node(x);
         if (isEmpty()) {
@@ -133,29 +141,13 @@ public class LinkedList {
         tail.next = q;
         tail = q;
     }
-    
-//    void addMany(List<String> a, List<String> b, List<Integer> c, List<Double> e) {
-//        int n, i;
-//        n = a.size();
-//        for (i = 0; i < n; i++) {
-//            addLast(new Book(a.get(i), b.get(i), c.get(i), 0, e.get(i)));
-//        }
-//    }
-//    void addMany(List<String> a, List<String> b, List<Integer> c) {
-//        int n, i;
-//        n = a.size();
-//        for (i = 0; i < n; i++) {
-//            addLast(new Reader(a.get(i), b.get(i), c.get(i)));
-//        }
-//    }
 
-    
     void insertAfter(int k, Book x) {
         Node q = pos(k);
         if (q == null) {
             return;
         }
-        if (tail == q){
+        if (tail == q) {
             addLast(x);
             return;
         }
@@ -167,7 +159,7 @@ public class LinkedList {
             tail = newNode;
         }
     }
-    
+
     //Search
     Node searchBybCode(String xbCode) {
         Node p = head;
@@ -179,6 +171,7 @@ public class LinkedList {
         }
         return (null);
     }
+
     Node searchInLeandingBybCode(String xbCode) {
         Node p = head;
         while (p != null) {
@@ -189,6 +182,7 @@ public class LinkedList {
         }
         return (null);
     }
+
     Node searchByrCode(String xrCode) {
         Node p = head;
         while (p != null) {
@@ -199,6 +193,7 @@ public class LinkedList {
         }
         return (null);
     }
+
     Node searchInLendingByrCode(String xrCode) {
         Node p = head;
         while (p != null) {
@@ -209,37 +204,55 @@ public class LinkedList {
         }
         return (null);
     }
+
     //Delete
     void remove(Node q) {
-        if (q == null) return;
+        if (q == null) {
+            return;
+        }
+        if (q == head) {
+            head = head.next;
+            if (head == null) {
+                tail = null; 
+            }
+            return;
+        }
+
         Node p = head;
-        while (p != null && p.next != q){
+        while (p != null && p.next != q) {
             p = p.next;
         }
-        if (p == null) return;
-        p.next = q.next;
-        if(p.next == null) tail = p;
+
+        if (p != null) {
+            p.next = q.next;
+            if (p.next == null) {
+                tail = p;  
+            }
+        }
     }
-    void remove(int k){
+
+    void remove(int k) {
         Node p = pos(k);
         remove(p);
     }
-    void removeBybCode(String xbCode){
+
+    void removeBybCode(String xbCode) {
         Node p = searchBybCode(xbCode);
         remove(p);
     }
-    void removeByrCode(String xrCode){
+
+    void removeByrCode(String xrCode) {
         Node p = searchBybCode(xrCode);
         remove(p);
     }
-    
+
     //Sort
     void sortBybCode() {
         Node pi, pj;
         Book temp;
-        for (pi = head; pi != null; pi = pi.next){
-            for (pj = pi.next; pj != null; pj = pj.next){
-                if (pj.bookInfo.getbCode().compareTo(pi.bookInfo.getbCode()) <0){
+        for (pi = head; pi != null; pi = pi.next) {
+            for (pj = pi.next; pj != null; pj = pj.next) {
+                if (pj.bookInfo.getbCode().compareTo(pi.bookInfo.getbCode()) < 0) {
                     temp = pi.bookInfo;
                     pi.bookInfo = pj.bookInfo;
                     pj.bookInfo = temp;
