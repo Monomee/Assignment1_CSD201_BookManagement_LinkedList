@@ -112,6 +112,21 @@ public class HandleChoice {
             case 10:
                 f.deleteBookPos();
                 break;
+            case 11:
+                f.f1();
+                break;
+            case 12:
+                f.f2();
+                break;
+            case 13:
+                f.f3();
+                break;
+            case 14:
+                f.f4();
+                break;
+            case 15:
+                f.f5();
+                break;
             case 0:
                 status = false;
                 break;

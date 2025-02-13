@@ -29,15 +29,16 @@ public class HandleFunction {
         String[] field;
         try {
             reader = new BufferedReader(new FileReader(fileName));
-            String line = reader.readLine();
+            String line = reader.readLine().trim();
 
             while (line != null) {
-                field = line.split(";");
-                String bCode = field[1].trim();
-                String title = field[2].trim();
-                int quanlity = Integer.parseInt(field[3].trim());
+                field = line.split("\\|");
+                String bCode = field[0].trim();
+                String title = field[1].trim();
+                int quanlity = Integer.parseInt(field[2].trim());
+                int lended = Integer.parseInt(field[3].trim());
                 double price = Double.parseDouble(field[4].trim());
-                bookList.addLast(new Book(bCode, title, quanlity, 0, price));
+                bookList.addLast(new Book(bCode, title, quanlity, lended, price));
                 // read next line
                 line = reader.readLine();
             }
@@ -425,5 +426,39 @@ public class HandleFunction {
         }
         System.out.println("Done!");
     }
-
+    
+    //assignment
+    void f1(){
+        bookList.clear();
+        readBookFile("book1.txt");
+        bookList.traverse();
+    }
+    
+    void f2(){
+        bookList.clear();
+        readBookFile("book1.txt");
+        bookList.removeBybCode("3");
+        bookList.traverse();
+    }
+    
+    void f3(){
+        bookList.clear();
+        readBookFile("book1.txt");
+        bookList.sortByLended();
+        bookList.traverse();
+    }
+    
+    void f4(){
+         bookList.clear();
+        readBookFile("book1.txt");
+        bookList.searchBybCode("2").bookInfo.setTitle("U");
+        bookList.traverse();
+    }
+    
+    void f5(){
+         bookList.clear();
+        readBookFile("book1.txt");
+        bookList.addLast(new Book("6", "V", 4, 2, 2));
+        bookList.traverse();
+    }
 }

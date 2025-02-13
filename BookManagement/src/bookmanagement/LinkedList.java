@@ -273,4 +273,17 @@ public class LinkedList {
             }
         }
     }
+    void sortByLended() {
+        Node pi, pj;
+        Book temp;
+        for (pi = head; pi != null; pi = pi.next) {
+            for (pj = pi.next; pj != null; pj = pj.next) {
+                if (pj.bookInfo.getLended() < pi.bookInfo.getLended()) {
+                    temp = pi.bookInfo;
+                    pi.bookInfo = pj.bookInfo;
+                    pj.bookInfo = temp;
+                }
+            }
+        }
+    }
 }

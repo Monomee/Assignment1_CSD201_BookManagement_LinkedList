@@ -29,7 +29,7 @@ public class Main {
                 MenuScene.menuBook();
                 int bookChoice;
                 do{
-                    bookChoice = c.handleChoice(10);
+                    bookChoice = c.handleChoice(15);
                 } while(c.userBookChoice(bookChoice));
                 menuOfMain();
                 break;
