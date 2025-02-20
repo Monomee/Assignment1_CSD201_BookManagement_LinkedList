@@ -53,13 +53,13 @@ public class HandleFunction {
         String[] field;
         try {
             reader = new BufferedReader(new FileReader(fileName));
-            String line = reader.readLine();
+            String line = reader.readLine().trim();
 
             while (line != null) {
-                field = line.split(";");
-                String rCode = field[1].trim();
-                String name = field[2].trim();
-                int byear = Integer.parseInt(field[3].trim());
+                field = line.split("\\|");
+                String rCode = field[0].trim();
+                String name = field[1].trim();
+                int byear = Integer.parseInt(field[2].trim());
                 readerList.addLast(new Reader(rCode, name, byear));
                 // read next line
                 line = reader.readLine();
@@ -76,7 +76,7 @@ public class HandleFunction {
     //1
     void loadBookDataFromFile() {
         String fileName;
-        System.out.print("Enter file name (Recommend: \"BookInput.txt\"): ");
+        System.out.print("Enter file name (Recommend: \"book.txt\"): ");
         fileName = sc.nextLine();
         readBookFile(fileName.trim());
         System.out.println("Done!");
@@ -251,7 +251,7 @@ public class HandleFunction {
     //1
     void loadReaderDataFromFile() {
         String fileName;
-        System.out.print("Enter file name (Recommend: \"ReaderInput.txt\"): ");
+        System.out.print("Enter file name (Recommend: \"reader.txt\"): ");
         fileName = sc.nextLine();
         readReaderFile(fileName.trim());
         System.out.println("Done!");
@@ -426,39 +426,87 @@ public class HandleFunction {
         }
         System.out.println("Done!");
     }
-    
-    //assignment
-    void f1(){
-        bookList.clear();
-        readBookFile("book1.txt");
-        bookList.traverse();
-    }
-    
-    void f2(){
-        bookList.clear();
-        readBookFile("book1.txt");
-        bookList.removeBybCode("3");
-        bookList.traverse();
-    }
-    
-    void f3(){
-        bookList.clear();
-        readBookFile("book1.txt");
-        bookList.sortByLended();
-        bookList.traverse();
-    }
-    
-    void f4(){
-         bookList.clear();
-        readBookFile("book1.txt");
-        bookList.searchBybCode("2").bookInfo.setTitle("U");
-        bookList.traverse();
-    }
-    
-    void f5(){
-         bookList.clear();
-        readBookFile("book1.txt");
-        bookList.addLast(new Book("6", "V", 4, 2, 2));
-        bookList.traverse();
-    }
+//    
+//    //assignment modify 1
+//    void f1(){
+//        bookList.clear();
+//        readBookFile("book1.txt");
+//        bookList.traverse();
+//    }
+//    
+//    void f2(){
+//        bookList.clear();
+//        readBookFile("book1.txt");
+//        bookList.removeBybCode("3");
+//        bookList.traverse();
+//    }
+//    
+//    void f3(){
+//        bookList.clear();
+//        readBookFile("book1.txt");
+//        bookList.sortByLended();
+//        bookList.traverse();
+//    }
+//    
+//    void f4(){
+//         bookList.clear();
+//        readBookFile("book1.txt");
+//        bookList.searchBybCode("2").bookInfo.setTitle("U");
+//        bookList.traverse();
+//    }
+//    
+//    void f5(){
+//         bookList.clear();
+//        readBookFile("book1.txt");
+//        bookList.addLast(new Book("6", "V", 4, 2, 2));
+//        bookList.traverse();
+//    }
+//    
+//   //assignment modify 2
+//    void loadFile(String fileBook, String fileReader){
+//        readBookFile(fileBook);
+//        readReaderFile(fileReader);
+//    }
+//   void lend(String bCode, String rCode){
+//       int state = 2;
+//
+//        if (bookList.searchBybCode(bCode.trim()) == null) {
+//            System.out.println(bCode + " does not existed!");
+//            return;
+//        }
+//
+//        if (readerList.searchByrCode(rCode.trim()) == null) {
+//            System.out.println(rCode + " does not existed!");
+//            return;
+//        }
+//
+//        Book checkBook = bookList.searchBybCode(bCode).bookInfo;
+//        if (checkBook.getLended() == checkBook.getQuanlity()) {
+//            System.out.println("Not successfull");
+//            return;
+//        } else if (checkBook.getLended() < checkBook.getQuanlity()) {
+//            state = 1;
+//            checkBook.setLended(checkBook.getLended() + 1);
+//        }
+//
+//        List<Node> lendingListForBook = lendingList.searchLendingBybCode(bCode);
+//        boolean isAlreadyLent = false;
+//        for (Node checkLending : lendingListForBook) {
+//            // Nếu người đọc đã mượn sách này và trạng thái là 1 (đang mượn)
+//            if (checkLending.lendingInfo.getrCode().equals(rCode) && checkLending.lendingInfo.getState() == 1) {
+//                isAlreadyLent = true;
+//                break;
+//            }
+//        }
+//
+//        // Nếu sách đã được mượn bởi người đọc này, không cho phép mượn lại
+//        if (isAlreadyLent) {
+//            System.out.println("Data not accepted!");  // Người đọc đã mượn sách này rồi
+//            return;
+//        }
+//
+//        lendingList.addLast(new Lending(bCode, rCode, state));
+//        lendingList.visit(bookList.searchBybCode(bCode));
+//        System.out.println("Successful!");
+//   }
 }

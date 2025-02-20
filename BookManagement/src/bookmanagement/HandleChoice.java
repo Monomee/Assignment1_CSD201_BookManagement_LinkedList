@@ -112,21 +112,21 @@ public class HandleChoice {
             case 10:
                 f.deleteBookPos();
                 break;
-            case 11:
-                f.f1();
-                break;
-            case 12:
-                f.f2();
-                break;
-            case 13:
-                f.f3();
-                break;
-            case 14:
-                f.f4();
-                break;
-            case 15:
-                f.f5();
-                break;
+//            case 11:
+//                f.f1();
+//                break;
+//            case 12:
+//                f.f2();
+//                break;
+//            case 13:
+//                f.f3();
+//                break;
+//            case 14:
+//                f.f4();
+//                break;
+//            case 15:
+//                f.f5();
+//                break;
             case 0:
                 status = false;
                 break;
@@ -175,6 +175,7 @@ public class HandleChoice {
                 f.inputLendingData();
                 break;
             case 2:
+                System.out.println("display lending");
                 f.displayLendingData();
                 break;
             case 3:
@@ -183,6 +184,26 @@ public class HandleChoice {
             case 4:
                 f.sortLendingByrCode();
                 break;
+//            case 5:
+//                System.out.println("loadfile");
+//                f.loadFile("book.txt", "reader.txt");
+//                break;
+//            case 6:
+//                System.out.println("lend1");
+//                f.lend("B1", "R1");
+//                break;
+//            case 7:
+//                System.out.println("lend2");
+//                 f.lend("B1", "R2");
+//                break;
+//            case 8:
+//                System.out.println("lend3");
+//                f.lend("B2", "R2");
+//                break;
+//            case 9:
+//                System.out.println("display book");
+//                f.displayBookData();
+//                break;
             case 0:
                 status = false;
                 break;
