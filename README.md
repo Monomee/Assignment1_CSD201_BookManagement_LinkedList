@@ -1,4 +1,4 @@
-Student: Nguyen Viet Hoang - FPT - HE191065 
+Student: Nguyen Viet Hoang
 
 Teacher: Thầy CauPD
 
