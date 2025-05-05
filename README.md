@@ -4,4 +4,4 @@ Teacher: Thầy CauPD
 
 Grade: 9.5
 
-Set up: use run.bat
+Use run.bat plz
